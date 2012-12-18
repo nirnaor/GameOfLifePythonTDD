@@ -69,6 +69,18 @@ class TestNeighboursCount(unittest.TestCase):
 
     def test_that_neighbours_count_is_correct2(self):
         self.assertEqual(self.game.neighbours_count(0, 0), 0)
+    def test_that_neighbours_count_is_8(self):
+        self.game.add_living_cell(1, 1)
+        self.game.add_living_cell(2, 1)
+        self.game.add_living_cell(3, 1)
+
+        self.game.add_living_cell(1, 2)
+        self.game.add_living_cell(3, 2)
+
+        self.game.add_living_cell(1, 3)
+        self.game.add_living_cell(2, 3)
+        self.game.add_living_cell(3, 3)
+        self.assertEqual(self.game.neighbours_count(2, 2), 8)
 
 
 if __name__ == '__main__':

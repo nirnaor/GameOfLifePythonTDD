@@ -39,7 +39,6 @@ class GameOfLife:
         neighbours_count += self._get_value_safely(x, y- 1)
         neighbours_count += self._get_value_safely(x + 1, y- 1)
 
-
         # same row
         neighbours_count += self._get_value_safely(x - 1, y)
         neighbours_count += self._get_value_safely(x + 1, y)
@@ -50,7 +49,6 @@ class GameOfLife:
         neighbours_count += self._get_value_safely(x + 1, y + 1)
 
         return neighbours_count
-
 
     def _get_value_safely(self, x, y):
         try:
