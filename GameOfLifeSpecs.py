@@ -43,7 +43,7 @@ class TestIsAlive(unittest.TestCase):
         self.game = GameOfLife(5)
         self.game.add_living_cell(1, 2)
         self.game.add_living_cell(2, 2)
-        self.game.add_living_cell(1, 2)
+        self.game.add_living_cell(2, 1)
 
     def test_that_it_returns_false_if_cell_was_not_added(self):
             self.assertEqual(self.game.is_alive(2, 3), False)
@@ -54,6 +54,21 @@ class TestIsAlive(unittest.TestCase):
             self.game.is_alive(0, 2)
 
 
+
+class TestNeighboursCount(unittest.TestCase):
+
+    def setUp(self):
+        self.game = GameOfLife(5)
+        self.game.add_living_cell(1, 2)
+        self.game.add_living_cell(2, 2)
+        self.game.add_living_cell(1, 2)
+
+
+    def test_that_neighbours_count_is_2(self):
+        self.assertEqual(self.game.neighbours_count(1, 2), 2)
+
+    def test_that_neighbours_count_is_correct2(self):
+        self.assertEqual(self.game.neighbours_count(0, 0), 0)
 
 
 if __name__ == '__main__':

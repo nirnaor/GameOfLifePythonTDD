@@ -31,6 +31,32 @@ class GameOfLife:
         self._validate_that_coordinate_is_in_range(y)
         return self.board[x][y] == 1
 
+    def neighbours_count(self, x, y):
+        neighbours_count = 0
+
+        # one row above
+        neighbours_count += self._get_value_safely(x - 1, y- 1)
+        neighbours_count += self._get_value_safely(x, y- 1)
+        neighbours_count += self._get_value_safely(x + 1, y- 1)
+
+
+        # same row
+        neighbours_count += self._get_value_safely(x - 1, y)
+        neighbours_count += self._get_value_safely(x + 1, y)
+
+        # one row below
+        neighbours_count += self._get_value_safely(x - 1, y + 1)
+        neighbours_count += self._get_value_safely(x, y + 1)
+        neighbours_count += self._get_value_safely(x + 1, y + 1)
+
+        return neighbours_count
+
+
+    def _get_value_safely(self, x, y):
+        try:
+            return self.board[x][y]
+        except IndexError as err:
+            return 0
             
 
 
