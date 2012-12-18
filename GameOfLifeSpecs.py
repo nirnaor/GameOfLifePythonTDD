@@ -26,13 +26,34 @@ class TestAddLivingCellMethod(unittest.TestCase):
 
     def test_that_it_raises_value_error_when_x_is_not_in_range(self):
         with self.assertRaises(ValueError):
-            self.game.add_living_cell(5,0)
+            self.game.add_living_cell(5, 0)
     def test_that_it_raises_value_error_when_y_is_not_in_range(self):
         with self.assertRaises(ValueError):
-            self.game.add_living_cell(2,5)
+            self.game.add_living_cell(2, 5)
     def test_that_it_raises_value_error_when_both_are_not_in_range(self):
         with self.assertRaises(ValueError):
-            self.game.add_living_cell(7,5)
+            self.game.add_living_cell(7, 5)
+    def test_that_it_returns_true_when_both_are_good(self):
+            self.assertEqual(self.game.add_living_cell(2, 3), True)
+
+
+class TestIsAlive(unittest.TestCase):
+
+    def setUp(self):
+        self.game = GameOfLife(5)
+        self.game.add_living_cell(1, 2)
+        self.game.add_living_cell(2, 2)
+        self.game.add_living_cell(1, 2)
+
+    def test_that_it_returns_false_if_cell_was_not_added(self):
+            self.assertEqual(self.game.is_alive(2, 3), False)
+    def test_that_it_returns_true_if_cell_was_not_added(self):
+            self.assertEqual(self.game.is_alive(1, 2), True)
+    def test_that_it_validates_coordinates(self):
+        with self.assertRaises(ValueError):
+            self.game.is_alive(0, 2)
+
+
 
 
 if __name__ == '__main__':
