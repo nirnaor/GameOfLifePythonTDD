@@ -65,12 +65,23 @@ class TestNeighboursCount(unittest.TestCase):
         self.game.add_living_cell(1, 2)
 
 
+    def test_that_neighbours_count_is_0(self):
+        self.game = GameOfLife(10)
+        self.assertEqual(self.game.neighbours_count(1, 2), 0)
+        self.assertEqual(self.game.neighbours_count(2, 2), 0)
+        self.assertEqual(self.game.neighbours_count(3, 2), 0)
+        self.assertEqual(self.game.neighbours_count(4, 2), 0)
+    def test_that_neighbours_count_is_1(self):
+        self.game = GameOfLife(10)
+        self.assertEqual(self.game.neighbours_count(1, 2), 0)
+        self.game.add_living_cell(0, 0)
+        self.assertEqual(self.game.neighbours_count(1, 0), 1)
     def test_that_neighbours_count_is_2(self):
         self.game.add_living_cell(0, 2)
         self.assertEqual(self.game.neighbours_count(1, 2), 2)
-
-    def test_that_neighbours_count_is_correct2(self):
-        self.assertEqual(self.game.neighbours_count(0, 0), 0)
+    def test_that_neighbours_count_is_3(self):
+        self.game.add_living_cell(0, 3)
+        self.assertEqual(self.game.neighbours_count(1, 3), 3)
     def test_that_neighbours_count_is_8(self):
         self.game.add_living_cell(1, 1)
         self.game.add_living_cell(2, 1)
@@ -87,25 +98,37 @@ class TestNeighboursCount(unittest.TestCase):
 
 
 class TestUnderPopulation(unittest.TestCase):
+    def setUp(self):
+        self.game = GameOfLife(10)
+        self.game.add_living_cell(1, 1)
+        self.game.add_living_cell(2, 1)
+        self.game.add_living_cell(3, 1)
 
+        self.game.add_living_cell(1, 2)
+        self.game.add_living_cell(3, 2)
+
+        self.game.add_living_cell(1, 3)
+        self.game.add_living_cell(2, 3)
+        self.game.add_living_cell(3, 3)
+
+        self.game.add_living_cell(4, 4)
+
+    def test_that_cell_with_no_neighbour_dies(self):
+        self.game.add_living_cell(9, 9)
+        self.assertEqual(self.game.is_alive(9, 9), True)
+        self.assertEqual(self.game.neighbours_count(9, 9), 0)
+        self.game.evolve()
+        self.assertEqual(self.game.is_alive(9, 9), False)
     def test_that_cell_with_one_neighbour_dies(self):
-        game = GameOfLife(5)
-        game.add_living_cell(1, 1)
-        game.add_living_cell(2, 1)
-        game.add_living_cell(3, 1)
-
-        game.add_living_cell(1, 2)
-        game.add_living_cell(3, 2)
-
-        game.add_living_cell(1, 3)
-        game.add_living_cell(2, 3)
-        game.add_living_cell(3, 3)
-
-        game.add_living_cell(4, 4)
-
-        self.assertEqual(game.neighbours_count(4, 4), 1)
-        game.evolve()
-        self.assertEqual(game.is_alive(4, 4), False)
+        self.assertEqual(self.game.neighbours_count(4, 4), 1)
+        self.game.evolve()
+        self.assertEqual(self.game.is_alive(4, 4), False)
+    def test_that_cell_with_two_neighbour_dosent_die(self):
+        self.game.add_living_cell(4, 5)
+        self.assertEqual(self.game.neighbours_count(4, 4), 2)
+        self.assertEqual(self.game.is_alive(4, 4), True)
+        self.game.evolve()
+        self.assertEqual(self.game.is_alive(4, 4), True)
 
 
 if __name__ == '__main__':
