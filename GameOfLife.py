@@ -45,18 +45,16 @@ class GameOfLife:
                     if self.neighbours_count(x_axis, y_axis) ==  3:
                         cells_to_revive.append([x_axis, y_axis])
 
+        self._set_cells_value(cells_to_revive, 1)
+        self._set_cells_value(cells_to_kill, 0)
 
 
-        for each_cell in cells_to_revive:
+
+    def _set_cells_value(self, cells_to_change, value_to_set):
+        for each_cell in cells_to_change:
             x = each_cell[0]
             y = each_cell[1] 
-            self.board[x][y] = 1
-
-        for each_cell in cells_to_kill:
-            x = each_cell[0]
-            y = each_cell[1] 
-            self.board[x][y] = 0
-
+            self.board[x][y] = value_to_set
 
     def _validate_that_coordinate_is_in_range(self, coordinate):
         if (coordinate < 0 or coordinate > self.size - 1):
