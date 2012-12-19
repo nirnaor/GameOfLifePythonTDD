@@ -1,6 +1,7 @@
 import pdb
 import os
 import time
+
 class Cell:
 
     def __init__(self, value, neighbours_count):
@@ -137,16 +138,3 @@ class GameOfLife:
                 print "salamat achinu..."
                 sys.exit()
 
-if __name__ == '__main__':
-        game = GameOfLife(10)
-        game.add_living_cell(1, 1)
-        game.add_living_cell(2, 1)
-        game.add_living_cell(3, 1)
-
-        game.add_living_cell(1, 2)
-        game.add_living_cell(3, 2)
-
-        game.add_living_cell(1, 3)
-        game.add_living_cell(2, 3)
-        game.add_living_cell(3, 3)
-        game.draw_matrix_forever()
