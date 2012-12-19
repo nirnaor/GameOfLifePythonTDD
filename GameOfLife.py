@@ -31,11 +31,31 @@ class GameOfLife:
 
 
     def evolve(self):
+        cells_to_revive = []
+        cells_to_kill = []
+
         for x_axis in range(self.size):
             for y_axis in range(self.size):
                 if self.board[x_axis][y_axis] == 1:
                     if self.neighbours_count(x_axis, y_axis) < 2:
-                        self.board[x_axis][y_axis] = 0
+                        cells_to_kill.append([x_axis, y_axis])
+                    elif self.neighbours_count(x_axis, y_axis) > 3:
+                        cells_to_kill.append([x_axis, y_axis])
+                elif self.board[x_axis][y_axis] == 0:
+                    if self.neighbours_count(x_axis, y_axis) ==  3:
+                        cells_to_revive.append([x_axis, y_axis])
+
+
+
+        for each_cell in cells_to_revive:
+            x = each_cell[0]
+            y = each_cell[1] 
+            self.board[x][y] = 1
+
+        for each_cell in cells_to_kill:
+            x = each_cell[0]
+            y = each_cell[1] 
+            self.board[x][y] = 0
 
 
     def _validate_that_coordinate_is_in_range(self, coordinate):
