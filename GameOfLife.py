@@ -72,17 +72,15 @@ class GameOfLife:
                 elif cell.is_dead_and_shoule_be_revived_by_reproduction:
                         cells_to_revive.append([x_axis, y_axis])
 
-
-
-        self._set_cells_value(cells_to_revive, 1)
-        self._set_cells_value(cells_to_kill, 0)
+        self._set_these_cells_to(1, cells_to_revive)
+        self._set_these_cells_to(0, cells_to_kill)
 
 
     def _get_cell(self, x_axis, y_axis):
         return Cell(self.board[x_axis][y_axis],
                 self.neighbours_count(x_axis, y_axis))
 
-    def _set_cells_value(self, cells_to_change, value_to_set):
+    def _set_these_cells_to(self, value_to_set, cells_to_change):
         for each_cell in cells_to_change:
             x = each_cell[0]
             y = each_cell[1] 
@@ -129,12 +127,8 @@ class GameOfLife:
 
     def draw_matrix_forever(self):
         while True:
-            try:
-                os.system('clear')
-                self._draw_matrix()
-                self.evolve()
-                time.sleep(1)
-            except KeyboardInterrupt:
-                print "salamat achinu..."
-                sys.exit()
+            os.system('clear')
+            self._draw_matrix()
+            self.evolve()
+            time.sleep(1)
 

@@ -1,6 +1,5 @@
 from GameOfLife import GameOfLife
 class Patterns:
-
     @staticmethod
     def blinker():
         game = GameOfLife(6)
