@@ -1,4 +1,6 @@
 import pdb
+import os
+import time
 class Cell:
 
     def __init__(self, value, neighbours_count):
@@ -122,3 +124,25 @@ class GameOfLife:
             for y_axis in range(self.size):
                 s += str(self.board[x_axis][y_axis])
             print(s)
+
+
+    def draw_matrix_forever(self):
+        while True:
+            os.system('clear')
+            self.draw_matrix()
+            self.evolve()
+            time.sleep(1)
+
+if __name__ == '__main__':
+        game = GameOfLife(10)
+        game.add_living_cell(1, 1)
+        game.add_living_cell(2, 1)
+        game.add_living_cell(3, 1)
+
+        game.add_living_cell(1, 2)
+        game.add_living_cell(3, 2)
+
+        game.add_living_cell(1, 3)
+        game.add_living_cell(2, 3)
+        game.add_living_cell(3, 3)
+        game.draw_matrix_forever()
