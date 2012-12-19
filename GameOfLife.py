@@ -5,16 +5,20 @@ class Cell:
         self.neighbours_count = neighbours_count
         self.value = value
 
+    @property
     def is_alive_and_should_die_from_under_population(self):
         return self.value == 1 and self.neighbours_count < 2
     
+    @property
     def is_alive_and_should_die_by_over_crowding(self):
         return self.value == 1 and self.neighbours_count > 3
 
+    @property
     def is_alive_and_should_stay_alive(self):
         return self.value == 1 and ( self.neighbours_count == 2 or
                                      self.neighbours_count == 3)
 
+    @property
     def is_dead_and_shoule_be_revived_by_reproduction(self):
         return self.value == 0 and self.neighbours_count == 3
 
@@ -58,11 +62,11 @@ class GameOfLife:
             for y_axis in range(self.size):
                 cell = self._get_cell(x_axis, y_axis)
 
-                if cell.is_alive_and_should_die_from_under_population():
+                if cell.is_alive_and_should_die_from_under_population:
                         cells_to_kill.append([x_axis, y_axis])
-                elif cell.is_alive_and_should_die_by_over_crowding():
+                elif cell.is_alive_and_should_die_by_over_crowding:
                         cells_to_kill.append([x_axis, y_axis])
-                elif cell.is_dead_and_shoule_be_revived_by_reproduction():
+                elif cell.is_dead_and_shoule_be_revived_by_reproduction:
                         cells_to_revive.append([x_axis, y_axis])
 
 
