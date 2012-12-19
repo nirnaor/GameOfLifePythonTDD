@@ -208,6 +208,28 @@ class TestReproduction(unittest.TestCase):
         self.game.evolve()
         self.assertEqual(self.game.is_alive(4, 2), False)
 
+class TestDrawMatrix(unittest.TestCase):
+    def setUp(self):
+        self.game = GameOfLife(10)
+        self.game.add_living_cell(1, 1)
+        self.game.add_living_cell(2, 1)
+        self.game.add_living_cell(3, 1)
+
+        self.game.add_living_cell(1, 2)
+        self.game.add_living_cell(3, 2)
+
+        self.game.add_living_cell(1, 3)
+        self.game.add_living_cell(2, 3)
+        self.game.add_living_cell(3, 3)
+
+        self.game.add_living_cell(4, 4)
+
+    def test_that_dead_cell_3_neighbours_becomes_alive(self):
+        print("before evolve")
+        self.game.draw_matrix()
+        self.game.evolve()
+        print("after evolve")
+        self.game.draw_matrix()
 
 if __name__ == '__main__':
     unittest.main()

@@ -115,7 +115,10 @@ class GameOfLife:
             return self.board[x][y]
         except IndexError as err:
             return 0
-            
 
-
-
+    def draw_matrix(self):
+        for x_axis in range(self.size):
+            s = ""
+            for y_axis in range(self.size):
+                s += str(self.board[x_axis][y_axis])
+            print(s)
