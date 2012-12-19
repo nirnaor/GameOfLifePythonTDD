@@ -118,7 +118,7 @@ class GameOfLife:
         except IndexError as err:
             return 0
 
-    def draw_matrix(self):
+    def _draw_matrix(self):
         for x_axis in range(self.size):
             s = ""
             for y_axis in range(self.size):
@@ -128,10 +128,14 @@ class GameOfLife:
 
     def draw_matrix_forever(self):
         while True:
-            os.system('clear')
-            self.draw_matrix()
-            self.evolve()
-            time.sleep(1)
+            try:
+                os.system('clear')
+                self._draw_matrix()
+                self.evolve()
+                time.sleep(1)
+            except KeyboardInterrupt:
+                print "salamat achinu..."
+                sys.exit()
 
 if __name__ == '__main__':
         game = GameOfLife(10)

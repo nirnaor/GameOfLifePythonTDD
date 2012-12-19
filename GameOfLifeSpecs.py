@@ -224,13 +224,6 @@ class TestDrawMatrix(unittest.TestCase):
 
         self.game.add_living_cell(4, 4)
 
-    #def test_that_dead_cell_3_neighbours_becomes_alive(self):
-        #self.game.draw_matrix_forever()
-        #print("before evolve")
-        #self.game.draw_matrix()
-        #self.game.evolve()
-        #print("after evolve")
-        #self.game.draw_matrix()
 
 if __name__ == '__main__':
     unittest.main()
