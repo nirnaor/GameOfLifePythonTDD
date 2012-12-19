@@ -1,4 +1,22 @@
 import pdb
+class Cell:
+
+    def __init__(self, value, neighbours_count):
+        self.neighbours_count = neighbours_count
+        self.value = value
+
+
+    def is_alive_and_under_populated(self):
+        return self.value == 1 and self.neighbours_count < 2
+    def is_alive_and_should_stay_alive(self):
+        return self.value == 1 and ( self.neighbours_count == 2 or
+                                     self.neighbours_count == 3)
+    def is_alive_and_should_die_by_over_crowding(self):
+        return self.value == 1 and self.neighbours_count > 3
+    def is_dead_and_shoule_be_revived_by_reproduction(self):
+        return self.value == 0 and self.neighbours_count == 3
+
+
 class GameOfLife:
 
     def __init__(self, size):
@@ -36,6 +54,7 @@ class GameOfLife:
 
         for x_axis in range(self.size):
             for y_axis in range(self.size):
+                cell = self._get_cell(x_axis, y_axis)
                 if self.board[x_axis][y_axis] == 1:
                     if self.neighbours_count(x_axis, y_axis) < 2:
                         cells_to_kill.append([x_axis, y_axis])
@@ -49,6 +68,9 @@ class GameOfLife:
         self._set_cells_value(cells_to_kill, 0)
 
 
+    def _get_cell(self, x_axis, y_axis):
+        return Cell(self.board[x_axis][y_axis],
+                self.neighbours_count(x_axis, y_axis))
 
     def _set_cells_value(self, cells_to_change, value_to_set):
         for each_cell in cells_to_change:
