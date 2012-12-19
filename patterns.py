@@ -1,5 +1,12 @@
 from GameOfLife import GameOfLife
+
+"""
+Static class that returns a few special patterns of 
+game of life
+"""
 class Patterns:
+
+
     @staticmethod
     def blinker():
         game = GameOfLife(6)

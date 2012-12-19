@@ -2,7 +2,12 @@ import pdb
 import os
 import time
 
+"""
+Represents a cell on the board of game of life. It's only uses 
+are to determine the if and why a cell should live or die 
+"""
 class Cell:
+
 
     def __init__(self, value, neighbours_count):
         self.neighbours_count = neighbours_count
@@ -26,7 +31,13 @@ class Cell:
         return self.value == 0 and self.neighbours_count == 3
 
 
+"""
+Holds the entire logic of Game of life. 
+Has functionallity for adding new cells, and evolving due to the rules
+of the game
+"""
 class GameOfLife:
+
 
     def __init__(self, size):
         if isinstance(size, int) == False:
@@ -56,7 +67,6 @@ class GameOfLife:
         self._validate_that_coordinate_is_in_range(y)
         return self.board[x][y] == 1
 
-
     def evolve(self):
         cells_to_revive = []
         cells_to_kill = []
@@ -75,10 +85,9 @@ class GameOfLife:
         self._set_these_cells_to(1, cells_to_revive)
         self._set_these_cells_to(0, cells_to_kill)
 
-
     def _get_cell(self, x_axis, y_axis):
         return Cell(self.board[x_axis][y_axis],
-                self.neighbours_count(x_axis, y_axis))
+                    self.neighbours_count(x_axis, y_axis))
 
     def _set_these_cells_to(self, value_to_set, cells_to_change):
         for each_cell in cells_to_change:
@@ -90,7 +99,6 @@ class GameOfLife:
         if (coordinate < 0 or coordinate > self.size - 1):
             raise ValueError("board size is " + str(self.size)  + 
                     " and given coordinate is " + str(coordinate))
-
 
     def neighbours_count(self, x, y):
         neighbours_count = 0
@@ -123,7 +131,6 @@ class GameOfLife:
             for y_axis in range(self.size):
                 s += str(self.board[x_axis][y_axis])
             print(s)
-
 
     def draw_matrix_forever(self):
         while True:

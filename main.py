@@ -1,4 +1,5 @@
 from patterns import Patterns
+
 def print_menu():
     print('Welcome to Game of life')
     print('------------------------')
@@ -7,11 +8,11 @@ def print_menu():
     print("2. Toad")
     print("3. Beacon")
 
-
 if __name__ == '__main__':
     try:
         print_menu()
         choice = raw_input()
+
         if (choice == '1'):
             Patterns.blinker().draw_matrix_forever()
         elif (choice == '2'):
