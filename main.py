@@ -1,12 +1,12 @@
 from patterns import Patterns
 
 def print_menu():
-    print('Welcome to Game of life')
-    print('------------------------')
-    print("Please Enter the number of the pattern that you want")
-    print("1. Blinker")
-    print("2. Toad")
-    print("3. Beacon")
+    print 'Welcome to Game of life'
+    print '------------------------'
+    print 'Please Enter the number of the pattern that you want'
+    print '1. Blinker'
+    print '2. Toad'
+    print '3. Beacon'
 
 if __name__ == '__main__':
     try:
