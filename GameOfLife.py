@@ -73,11 +73,11 @@ class GameOfLife:
                 cell = self._get_cell(x_axis, y_axis)
 
                 if cell.is_alive_and_should_die_from_under_population:
-                        cells_to_kill.append([x_axis, y_axis])
+                        cells_to_kill.append( (x_axis, y_axis) )
                 elif cell.is_alive_and_should_die_by_over_crowding:
-                        cells_to_kill.append([x_axis, y_axis])
+                        cells_to_kill.append( (x_axis, y_axis) )
                 elif cell.is_dead_and_shoule_be_revived_by_reproduction:
-                        cells_to_revive.append([x_axis, y_axis])
+                        cells_to_revive.append( (x_axis, y_axis) )
 
         self._set_these_cells_to(1, cells_to_revive)
         self._set_these_cells_to(0, cells_to_kill)
@@ -87,9 +87,7 @@ class GameOfLife:
                     self.neighbours_count(x_axis, y_axis))
 
     def _set_these_cells_to(self, value_to_set, cells_to_change):
-        for each_cell in cells_to_change:
-            x = each_cell[0]
-            y = each_cell[1] 
+        for x, y in cells_to_change:
             self.board[x][y] = value_to_set
 
     def _validate_that_coordinate_is_in_range(self, coordinate):
