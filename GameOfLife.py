@@ -44,9 +44,8 @@ class GameOfLife:
             raise TypeError("size of board should be an integer")
         elif size < 1:
             raise ValueError("board size should be at least 1")
-        else:
-            self.size = size
-            self._build_matrix()
+        self.size = size
+        self._build_matrix()
 
     def _build_matrix(self):
         # Cell that is dead is assigned to value of 0
