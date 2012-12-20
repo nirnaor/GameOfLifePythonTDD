@@ -1,7 +1,7 @@
 import unittest
 import pdb
 
-from GameOfLife import GameOfLife
+from gameoflife import GameOfLife
 
 
 class TestInitMethod(unittest.TestCase):

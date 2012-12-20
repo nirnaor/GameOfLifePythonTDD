@@ -1,4 +1,4 @@
-from GameOfLife import GameOfLife
+from gameoflife import GameOfLife
 
 """
 Static class that returns a few special patterns of 
