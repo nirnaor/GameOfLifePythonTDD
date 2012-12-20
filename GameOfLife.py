@@ -49,9 +49,7 @@ class GameOfLife:
 
     def _build_matrix(self):
         # Cell that is dead is assigned to value of 0
-        self.board = []
-        for i in range(self.size):
-            self.board.append([0] * self.size)
+        self.board = [ [0] * self.size for i in range( self.size ) ]
 
         
 
