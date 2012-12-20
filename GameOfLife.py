@@ -117,7 +117,7 @@ class GameOfLife:
     def _get_value_safely(self, x, y):
         try:
             return self.board[x][y]
-        except IndexError as err:
+        except IndexError:
             return 0
 
     def _draw_matrix(self):
